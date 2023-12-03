@@ -32,3 +32,12 @@ img {
   flex-wrap: wrap;
   gap: 10px;
 }
+
+#name-input {
+  color: orange;
+}
+
+#name-output {
+  color: orange;
+  text-shadow: 2px 2px 2px grey;
+}
