@@ -1,73 +1,38 @@
-function createBoxes(amount) {
-  const boxesContainer = document.getElementById("boxes");
+const boxesRef = document.querySelector("#boxes");
+const btnCreateRef = document.querySelector("button[data-create]");
+const btnDestroyRef = document.querySelector("button[data-destroy");
+const inputRef = document.querySelector("input");
 
-  for (let i = 0; i < amount; i++) {
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, 0)}`;
+}
+function destroyBoxes() {
+  boxesRef.innerHTML = "";
+}
+
+function createBoxes(amount) {
+  for (let i = 0; i < amount; i += 1) {
     const box = document.createElement("div");
-    box.style.width = `${30 + i * 10}px`;
-    box.style.height = `${30 + i * 10}px`;
-    box.style.backgroundColor = getRandomHexColor();
-    boxesContainer.appendChild(box);
+    Object.assign(box.style, {
+      width: parseInt("30px") + i * 10 + "px",
+      height: parseInt("30px") + i * 10 + "px",
+      background: getRandomHexColor(),
+    });
   }
 }
 
-function destroyBoxes() {
-  const boxesContainer = document.getElementById("boxes");
-  boxesContainer.innerHTML = "";
-}
+btnCreateRef.addEventListener("click", () => {
+  if (inputRef.value >= 1 && inputRef.value <= 100) {
+    createBoxes(inputRef.value);
+    inputRef.value = "";
+  } else {
+    alert("Please enter a number between 1 and 100.");
+  }
+});
 
-document
-  .querySelector("button[data-create]")
-  .addEventListener("click", function () {
-    const input = document.querySelector("input");
-    const amount = Number(input.value);
-
-    if (amount >= 1 && amount <= 100) {
-      createBoxes(amount);
-      input.value = "";
-    } else {
-      alert("Please enter a number between 1 and 100.");
-    }
-  });
-
-document
-  .querySelector("button[data-destroy]")
-  .addEventListener("click", destroyBoxes);
-
-// const boxesRef = document.querySelector("#boxes");
-// const btnCreateRef = document.querySelector("button[data-create]");
-// const btnDestroyRef = document.querySelector("button[data-destroy");
-// const inputRef = document.querySelector("input");
-
-// function getRandomHexColor() {
-//   return `#${Math.floor(Math.random() * 16777215)
-//     .toString(16)
-//     .padStart(6, 0)}`;
-// }
-// function destroyBoxes() {
-//   boxesRef.innerHTML = "";
-// }
-
-// function createBoxes(amount) {
-//   for (let i = 0; i < amount; i += 1) {
-//     const box = document.createElement("div");
-//     Object.assign(box.style, {
-//       width: parseInt("30px") + i * 10 + "px",
-//       height: parseInt("30px") + i * 10 + "px",
-//       background: getRandomHexColor(),
-//     });
-//   }
-// }
-
-// btnCreateRef.addEventListener("click", () => {
-//   if (inputRef.value >= 1 && inputRef.value <= 100) {
-//     createBoxes(inputRef.value);
-//     inputRef.value = "";
-//   } else {
-//     alert("Please enter a number between 1 and 100.");
-//   }
-// });
-
-// btnDestroyRef.addEventListener("click", destroyBoxes);
+btnDestroyRef.addEventListener("click", destroyBoxes);
 
 // const boxesRef = document.querySelector("#boxes");
 // const btnCreateRef = document.querySelector("button[data-create]");
