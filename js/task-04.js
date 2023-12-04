@@ -14,8 +14,8 @@ function handleSubmit(event) {
       password,
     };
     console.log(login);
+    form.reset();
   } else {
     alert("All form fields must be filled in!");
   }
-  form.reset();
 }

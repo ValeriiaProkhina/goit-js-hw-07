@@ -14,3 +14,5 @@ function getRandomHexColor() {
     .toString(16)
     .padStart(6, 0)}`;
 }
+console.log(getRandomHexColor);
+console.log(handleClick);
